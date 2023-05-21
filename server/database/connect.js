@@ -3,13 +3,15 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-const connectDB = () => {
+const connectDB = async () => {
   mongoose.set("strictQuery", true);
 
-  mongoose
-    .connect(process.env.MONGODB_CONNECTION_URL)
-    .then(() => console.log("connected to mongodb"))
-    .catch((error) => console.log(error));
+  try {
+    await mongoose.connect(process.env.MONGODB_CONNECTION_URL);
+    console.log("connected to mongoDB");
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export default connectDB;
