@@ -3,12 +3,13 @@ import mongoose from "mongoose";
 const Quizzes = new mongoose.Schema(
   {
     _id: { type: String, required: true, minLength: 6 },
-    createBy: { type: Number, required: true },
+    createdBy: { type: String, required: true },
     createdOn: { type: Date, required: true },
     scheduledFor: { type: Date, required: true },
+    expiresOn: { type: Date, required: true },
     timeLimit: { type: String, required: true },
     description: { type: String, maxLength: 200 },
-    quizGrade: { type: String, required: true, maxLength: 10 },
+    grade: { type: String, required: true, maxLength: 10 },
     title: { type: String, required: true, maxLength: 50 },
     subject: { type: String, required: true, maxLength: 20 },
     questions: [
@@ -22,6 +23,6 @@ const Quizzes = new mongoose.Schema(
   { collection: "quiz" }
 );
 
-const QuizzesModel = mongoose.model("Quizzes", Quizzes);
+const QuizzesSchema = mongoose.model("Quizzes", Quizzes);
 
-export default QuizzesModel;
+export default QuizzesSchema;

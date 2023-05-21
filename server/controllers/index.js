@@ -1,4 +1,5 @@
-import { TeacherSchema } from "../models/teacherModel.js";
+import TeacherSchema from "../models/teacherModel.js";
+import QuizzesSchema from "../models/quizzesModel.js";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -91,4 +92,50 @@ const verifyToken = asyncHandler(async (req, res) => {
   res.status(200).json({ accessToken: token, data });
 });
 
-export { getAll, home, signup, signin, verifyToken };
+const createQuiz = asyncHandler(async (req, res) => {
+  const {
+    createdBy,
+    scheduledFor,
+    expiresOn,
+    timeLimit,
+    description,
+    grade,
+    title,
+    subject,
+    questions,
+  } = req.body;
+
+  const generateRandomString = () => {
+    const characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
+
+    for (let i = 0; i < 6; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+
+    return result;
+  };
+  const quizID = generateRandomString();
+
+  const newQuiz = await QuizzesSchema.create({
+    _id: quizID,
+    createdBy,
+    createdOn: Date.now(),
+    scheduledFor,
+    expiresOn,
+    timeLimit,
+    description,
+    grade,
+    title,
+    subject,
+    questions,
+  });
+
+  res
+    .status(200)
+    .json({ message: "quiz created successfully", quizID: newQuiz._id });
+});
+
+export { getAll, home, signup, signin, verifyToken, createQuiz };

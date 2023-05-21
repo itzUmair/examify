@@ -10,4 +10,6 @@ const Teacher = new mongoose.Schema(
   { collection: "teachers" }
 );
 
-export const TeacherSchema = mongoose.model("Teacher", Teacher);
+const TeacherSchema = mongoose.model("Teacher", Teacher);
+
+export default TeacherSchema;
