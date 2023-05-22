@@ -1,9 +1,7 @@
 function App() {
   return (
     <>
-      <h1 className="text-3xl lg:text-orange-500 sm:text-purple-500">
-        heading
-      </h1>
+      <h1 className="text-3xl text-clr-300">heading</h1>
     </>
   );
 }
