@@ -3,6 +3,7 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import connectDB from "./database/connect.js";
 import router from "./routes/index.js";
+import errorHandler from "./middleware/errorHandler.js";
 
 dotenv.config();
 
@@ -17,9 +18,11 @@ app.use(
 
 app.use(express.json());
 app.use("/api/v1", router);
+app.use(errorHandler);
 
 const startServer = async () => {
   try {
+    console.log("establishing connection to mongoDB...");
     await connectDB();
     app.listen(8080, () => console.log("server listening on port 8080"));
   } catch (error) {

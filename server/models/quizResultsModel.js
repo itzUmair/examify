@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const QuizResults = new mongoose.Schema(
   {
-    quizID: { type: String, required: true },
+    _id: { type: String, required: true },
     results: [
       {
         studentName: { type: String, required: true, maxLength: 20 },
@@ -15,3 +15,4 @@ const QuizResults = new mongoose.Schema(
 );
 
 const QuizResultsModel = mongoose.model("QuizResults", QuizResults);
+export default QuizResultsModel;
