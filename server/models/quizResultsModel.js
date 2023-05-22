@@ -2,17 +2,13 @@ import mongoose from "mongoose";
 
 const QuizResults = new mongoose.Schema(
   {
-    _id: { type: String, required: true },
-    results: [
-      {
-        studentName: { type: String, required: true, maxLength: 20 },
-        studentScore: { type: Number, required: true },
-        attemptOn: { type: Date, default: Date.now },
-      },
-    ],
+    quiz_id: { type: String, required: true },
+    studentName: { type: String, required: true, maxLength: 20 },
+    studentScore: { type: Number, required: true },
+    attemptOn: { type: Date, default: Date.now },
   },
   { collection: "quiz_result" }
 );
 
-const QuizResultsModel = mongoose.model("QuizResults", QuizResults);
-export default QuizResultsModel;
+const QuizResultsSchema = mongoose.model("QuizResults", QuizResults);
+export default QuizResultsSchema;

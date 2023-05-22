@@ -1,6 +1,6 @@
 import TeacherSchema from "../models/teacherModel.js";
 import QuizzesSchema from "../models/quizzesModel.js";
-import QuizResultsModel from "../models/quizResultsModel.js";
+import QuizResultsSchema from "../models/quizResultsModel.js";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -154,21 +154,42 @@ const getAllActiveQuizzes = asyncHandler(async (req, res) => {
 
 const getAllQuizResults = asyncHandler(async (req, res) => {
   const { id } = req.body;
-  const quizzes = await QuizResultsModel.find({ _id: id });
-  res.status(200).json({ data: quizzes.results });
+  const quizzes = await QuizResultsSchema.find({ quiz_id: id });
+  res.status(200).json({ data: quizzes });
 });
 
 // ================================================Student Methods========================
 
 const getQuiz = asyncHandler(async (req, res) => {
   const { id } = req.body;
-  const quiz = await QuizzesSchema.find({ _id: id }).select(
+  const quiz = await QuizzesSchema.findOne({ quiz_id: id }).select(
     "-questions.correctAnswer"
   );
   if (quiz.length === 0) {
     CustomErrors(404, "no quiz with this id was found.");
   }
   res.status(200).json(quiz);
+});
+
+const submitQuiz = asyncHandler(async (req, res) => {
+  const { id, name, answers } = req.body;
+  let score = 0;
+  const correctAnswers = await QuizzesSchema.findOne({ _id: id }).select(
+    "questions.correctAnswer"
+  );
+  for (let answer = 0; answer < answers.length; answer++) {
+    if (answers[answer] === correctAnswers.questions[answer].correctAnswer) {
+      score++;
+    }
+  }
+  const date = new Date();
+  await QuizResultsSchema.create({
+    quiz_id: id,
+    studentName: name,
+    studentScore: score,
+    attemptOn: date.toISOString(),
+  });
+  res.status(200).json({ score });
 });
 
 export {
@@ -182,4 +203,5 @@ export {
   getAllActiveQuizzes,
   getAllQuizResults,
   getQuiz,
+  submitQuiz,
 };
