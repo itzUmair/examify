@@ -1,7 +1,28 @@
+import { Login, Signup } from "./components";
+import { useState } from "react";
+import { CSSTransition } from "react-transition-group";
+import "./styles/Login.css";
+
 function App() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [isSignup, setIsSignup] = useState(false);
+  const [onLandingPage, setOnLandingPage] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
     <>
-      <h1 className="text-3xl text-clr-300">heading</h1>
+      <CSSTransition
+        in={!isAuthenticated && !isSignup && isLogin}
+        unmountOnExit
+        timeout={500}
+        classNames="login"
+      >
+        <div className="login">
+          <Login
+            setIsSignup={setIsSignup}
+            setIsAuthenticated={setIsAuthenticated}
+          />
+        </div>
+      </CSSTransition>
     </>
   );
 }
