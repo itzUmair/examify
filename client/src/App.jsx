@@ -1,6 +1,5 @@
 import { Login, Signup } from "./components";
 import { useState } from "react";
-import { CSSTransition } from "react-transition-group";
 import "./styles/Login.css";
 
 function App() {
@@ -10,19 +9,20 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
     <>
-      <CSSTransition
-        in={!isAuthenticated && !isSignup && isLogin}
-        unmountOnExit
-        timeout={500}
-        classNames="login"
-      >
+      {!isAuthenticated && !isSignup && isLogin && (
         <div className="login">
           <Login
             setIsSignup={setIsSignup}
+            setIsLogin={setIsLogin}
             setIsAuthenticated={setIsAuthenticated}
           />
         </div>
-      </CSSTransition>
+      )}
+      {!isAuthenticated && !isLogin && isSignup && (
+        <div className="login">
+          <Signup setIsLogin={setIsLogin} setIsSignup={setIsSignup} />
+        </div>
+      )}
     </>
   );
 }
