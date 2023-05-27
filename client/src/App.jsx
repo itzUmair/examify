@@ -1,15 +1,15 @@
 import { Login, Signup } from "./components";
 import { useState } from "react";
-import "./styles/Login.css";
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
   const [isSignup, setIsSignup] = useState(false);
   const [onLandingPage, setOnLandingPage] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
     <>
-      {!isAuthenticated && !isSignup && isLogin && (
+      {isLogin && (
         <div className="login">
           <Login
             setIsSignup={setIsSignup}
@@ -18,11 +18,7 @@ function App() {
           />
         </div>
       )}
-      {!isAuthenticated && !isLogin && isSignup && (
-        <div className="login">
-          <Signup setIsLogin={setIsLogin} setIsSignup={setIsSignup} />
-        </div>
-      )}
+      {isSignup && <Signup setIsLogin={setIsLogin} setIsSignup={setIsSignup} />}
     </>
   );
 }

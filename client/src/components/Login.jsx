@@ -1,12 +1,15 @@
 import { useState } from "react";
 import Logo from "../assets/logo.svg";
-import "../styles/Login.css";
+import axios from "../api/axios.js";
+import "../styles/form.css";
+import verifyToken from "../utils/verifyToken";
 
 function Login({ setIsSignup, setIsLogin, setIsAuthenticated }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setError("");
@@ -19,9 +22,17 @@ function Login({ setIsSignup, setIsLogin, setIsAuthenticated }) {
     }
   };
 
-  const validateForm = (e) => {
-    e.preventDefault();
-    if (
+  const validateForm = () => {
+    if (!email.length) {
+      setError("Email is required");
+      return false;
+    } else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      setError("Invalid email address");
+      return false;
+    } else if (!password.length) {
+      setError("Password is required");
+      return false;
+    } else if (
       !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
         password
       )
@@ -29,10 +40,30 @@ function Login({ setIsSignup, setIsLogin, setIsAuthenticated }) {
       setError(
         "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character"
       );
-    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      setError("Invalid email address");
+      return false;
     }
+    return true;
   };
+
+  const authenticate = async (e) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
+    if (validateForm()) {
+      try {
+        const response = await axios.post("signin", {
+          email,
+          password,
+        });
+        localStorage.setItem("token", response.data.accessToken);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error.response.data.error);
+      }
+    }
+    setIsLoading(false);
+  };
+
   return (
     <div className="form-container">
       <form className="form">
@@ -53,21 +84,25 @@ function Login({ setIsSignup, setIsLogin, setIsAuthenticated }) {
           value={password}
           required
         />
-        <button
+        <div
           className="show-password-btn"
           onClick={(e) => {
-            e.preventDefault();
             setShowPassword((prevState) => !prevState);
           }}
         >
           Show Password
-        </button>
+        </div>
         {error && <p className="error">{error}</p>}
-        <button type="submit" onClick={validateForm} className="button">
-          Login
+        <button
+          type="submit"
+          onClick={authenticate}
+          className="button"
+          disabled={isLoading}
+        >
+          {isLoading ? "Logging in..." : "Log in"}
         </button>
         <p>
-          Don&apos;t have an account?{" "}
+          Don&apos;t have an account?
           <button
             onClick={(e) => {
               e.preventDefault();

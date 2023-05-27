@@ -23,9 +23,13 @@ const getAll = async (req, res) => {
 
 const signup = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
-  const existingUser = await TeacherSchema.find({ email });
-  if (existingUser.length) {
+  const existingUserEmail = await TeacherSchema.find({ email });
+  if (existingUserEmail.length) {
     CustomErrors(400, "account with this email already exists.");
+  }
+  const existingUserName = await TeacherSchema.find({ name });
+  if (existingUserName.length) {
+    CustomErrors(400, "account with this name already exists.");
   }
   const id = await TeacherSchema.find();
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -41,8 +45,7 @@ const signup = asyncHandler(async (req, res) => {
 const signin = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const accountExist = await TeacherSchema.findOne({ email });
-
-  if (accountExist.length === 0) {
+  if (accountExist && accountExist.length === 0) {
     CustomErrors(404, "invalid credentials.");
   }
 
@@ -63,11 +66,11 @@ const signin = asyncHandler(async (req, res) => {
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: "2m",
+      expiresIn: "24h",
     }
   );
 
-  res.status(200).json(accessToken);
+  res.status(200).json({ accessToken });
 });
 
 const verifyToken = asyncHandler(async (req, res) => {
@@ -79,14 +82,14 @@ const verifyToken = asyncHandler(async (req, res) => {
     CustomErrors(400, "invalid token.");
   }
 
-  const tokenValid = jwt.verify(token, process.env.JWT_SECRET);
-
-  if (!tokenValid) {
+  try {
+    const tokenValid = jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
     CustomErrors(401, "token expired.");
   }
 
   const data = jwt.decode(token, process.env.JWT_SECRET);
-  res.status(200).json({ accessToken: token, data });
+  res.status(200).json({ message: "valid", accessToken: token, data });
 });
 
 const createQuiz = asyncHandler(async (req, res) => {
