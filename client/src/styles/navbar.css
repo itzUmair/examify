@@ -1,0 +1,96 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0.5rem 0 0.5rem 0.15rem var(--clr-910);
+  position: relative;
+}
+
+.navbar > .profile {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  height: 3rem;
+  color: var(--clr-300);
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar > .profile > img {
+  width: 1rem;
+}
+
+.navbar > .profileMenuContainer {
+  position: absolute;
+  list-style: none;
+  background-color: var(--clr-100);
+  box-shadow: 0 0 1rem 0.1rem var(--clr-910);
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.navbar > .profileMenuContainer > .profileOptions {
+  margin-block: 0.5rem;
+}
+
+.navbar > .profileMenuContainer > .profileOptions > .profileEmailTag {
+  font-weight: bold;
+}
+
+.navbar > .profileMenuContainer > .profileOptions > .profileEmail {
+  position: relative;
+  border-bottom: 2px solid black;
+  margin-block-end: 0.5rem;
+  padding-block-end: 0.5rem;
+}
+
+.navbar > .profileMenuContainer > .profileOptions > button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.navbar > .profileMenuContainer > .profileOptions > button::after {
+  content: "";
+  position: absolute;
+  bottom: -0.15rem;
+  left: 0;
+  width: 100%;
+  height: 0.2rem;
+  background-color: var(--clr-300);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms ease;
+}
+
+.navbar > .profileMenuContainer > .profileOptions > button:hover::after {
+  transform: scaleX(100%);
+  transform-origin: left;
+}
+
+@media (min-width: 1024px) {
+  .navbar {
+    padding-inline: 2rem;
+    padding-block: 0.8rem;
+  }
+  .navbar > .logo {
+    width: 8rem;
+  }
+  .navbar > .profileMenuContainer {
+    top: 4rem;
+    right: 2rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+}
+
+@media (max-width: 767px) {
+}

@@ -13,6 +13,8 @@ const verifyToken = async () => {
         },
       }
     );
+    const userData = JSON.stringify(cookie.data.data);
+    localStorage.setItem("userData", userData);
     return cookie.data.message;
   } catch (error) {
     return "invalid";

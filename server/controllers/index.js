@@ -69,8 +69,12 @@ const signin = asyncHandler(async (req, res) => {
       expiresIn: "24h",
     }
   );
+  const data = {
+    emailAddress,
+    name,
+  };
 
-  res.status(200).json({ accessToken });
+  res.status(200).json({ accessToken, data });
 });
 
 const verifyToken = asyncHandler(async (req, res) => {

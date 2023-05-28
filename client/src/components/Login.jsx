@@ -2,7 +2,6 @@ import { useState } from "react";
 import Logo from "../assets/logo.svg";
 import axios from "../api/axios.js";
 import "../styles/form.css";
-import verifyToken from "../utils/verifyToken";
 
 function Login({ setIsSignup, setIsLogin, setIsAuthenticated }) {
   const [email, setEmail] = useState("");
@@ -56,9 +55,13 @@ function Login({ setIsSignup, setIsLogin, setIsAuthenticated }) {
           password,
         });
         localStorage.setItem("token", response.data.accessToken);
+        localStorage.setItem("userData", JSON.stringify(response.data.data));
         setIsLoading(false);
+        setIsLogin(false);
+        setIsAuthenticated(true);
       } catch (error) {
         setError(error.response.data.error);
+        setIsLoading(false);
       }
     }
     setIsLoading(false);
