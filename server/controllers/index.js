@@ -143,13 +143,24 @@ const createQuiz = asyncHandler(async (req, res) => {
 });
 
 const getAllQuizzes = asyncHandler(async (req, res) => {
-  const { id } = req.body;
-  const quizzes = await QuizzesSchema.find({ createdBy: id });
+  const id = req.params.teacherID;
+  const date = new Date();
+  const currentDate = date.toISOString();
+  const quizzes = await QuizzesSchema.find({ createdBy: id })
+    .where("expiresOn")
+    .lte(currentDate)
+    .select({
+      _id: 1,
+      title: 1,
+      grade: 1,
+      subject: 1,
+      expiresOn: 1,
+    });
   res.status(200).json(quizzes);
 });
 
 const getAllActiveQuizzes = asyncHandler(async (req, res) => {
-  const { id } = req.body;
+  const id = req.params.teacherID;
   const date = new Date();
   const currentDate = date.toISOString();
   const activeQuizzes = await QuizzesSchema.find({ createdBy: id })
@@ -160,7 +171,7 @@ const getAllActiveQuizzes = asyncHandler(async (req, res) => {
 });
 
 const getAllQuizResults = asyncHandler(async (req, res) => {
-  const { id } = req.body;
+  const id = req.params.quizID;
   const quizzes = await QuizResultsSchema.find({ quiz_id: id });
   res.status(200).json({ data: quizzes });
 });
@@ -168,7 +179,7 @@ const getAllQuizResults = asyncHandler(async (req, res) => {
 // ================================================Student Methods========================
 
 const getQuiz = asyncHandler(async (req, res) => {
-  const { id } = req.body;
+  const id = req.params.quizID;
   const quiz = await QuizzesSchema.findOne({ quiz_id: id }).select(
     "-questions.correctAnswer"
   );

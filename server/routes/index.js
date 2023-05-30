@@ -21,10 +21,10 @@ router.route("/signup").post(signup);
 router.route("/signin").post(signin);
 router.route("/verifyToken").post(verifyToken);
 router.route("/createQuiz").post(createQuiz);
-router.route("/getAllQuizzes").post(getAllQuizzes);
-router.route("/getAllActiveQuizzes").post(getAllActiveQuizzes);
-router.route("/getAllQuizResults").post(getAllQuizResults);
-router.route("/getQuiz").post(getQuiz);
+router.route("/getAllQuizzes/:teacherID").get(getAllQuizzes);
+router.route("/getAllActiveQuizzes/:teacherID").get(getAllActiveQuizzes);
+router.route("/getAllQuizResults/:quizID").get(getAllQuizResults);
+router.route("/getQuiz/:quizID").get(getQuiz);
 router.route("/submitQuiz").post(submitQuiz);
 
 export default router;

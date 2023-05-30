@@ -1,0 +1,20 @@
+.tabs {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  margin: 1rem;
+  border-bottom: 1px solid var(--clr-910);
+}
+
+.tabsOptions {
+  cursor: pointer;
+}
+
+.tabsOptions:hover,
+.tabsOptions:focus {
+  border-bottom: 3px solid var(--clr-320);
+}
+
+.tabsOptions.active {
+  border-bottom: 3px solid var(--clr-300);
+}

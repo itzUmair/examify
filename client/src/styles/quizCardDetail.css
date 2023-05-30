@@ -1,0 +1,89 @@
+.quizCardContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 1rem;
+  border: 2px solid var(--clr-910);
+  transition: width 300ms ease;
+}
+
+.quizCardContainer > .quizID {
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 1rem;
+  background-color: var(--clr-300);
+  height: 100%;
+  border-top-left-radius: 0.9rem;
+  border-bottom-left-radius: 0.9rem;
+  color: var(--clr-100);
+}
+
+.quizCardContainer > .quizDetailContainer {
+  text-overflow: ellipsis;
+}
+
+.quizCardContainer > .quizDetailContainer > .quizTitle {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.quizCardContainer > .quizDetailContainer .quizSubject .quizGrade {
+  text-transform: capitalize;
+}
+
+.quizCardContainer > .quizActionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-left: auto;
+  padding-inline-end: 1rem;
+}
+
+.quizCardContainer > .quizActionContainer > .quizAction {
+  background-color: var(--clr-300);
+  color: var(--clr-100);
+  font-weight: bold;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 0.4rem;
+}
+
+@media (min-width: 1024px) {
+  .quizCardContainer {
+    width: 30rem;
+    height: 5rem;
+  }
+  .quizCardContainer > .quizID {
+    width: 7rem;
+  }
+  .quizCardContainer > .quizDetailContainer > .quizSubject,
+  .quizCardContainer > .quizDetailContainer > .quizGrade,
+  .quizCardContainer > .quizDetailContainer > .quizDate {
+    font-size: 0.8rem;
+  }
+  .quizCardContainer > .quizDetailContainer > .quizTitle {
+    font-size: 1.2rem;
+  }
+
+  .quizCardContainer > .quizActionContainer > .quizAction {
+    padding-inline: 0.5rem;
+    padding-block: 0.25rem;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  .quizCardContainer > .quizActionContainer > .quizAction:hover,
+  .quizCardContainer > .quizActionContainer > .quizAction:focus {
+    background-color: var(--clr-100);
+    color: var(--clr-300);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+}
+
+@media (max-width: 767px) {
+}

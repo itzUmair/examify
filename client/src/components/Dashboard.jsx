@@ -1,16 +1,21 @@
-import { ActiveQuizes, NavBar } from "./dashboardComponents";
+import { ActiveQuizzes, AllQuizzes, NavBar, Tabs } from "./dashboardComponents";
 import { useState } from "react";
+import "../styles/dashboard.css";
 
 function Dashboard({ setIsAuthenticated, setIsLogin }) {
-  const [currentTab, setCurrentTab] = useState("activeQuizzes");
+  const [currentTab, setCurrentTab] = useState(true);
   return (
-    <main>
+    <main className="dashboardMain">
       <NavBar
         setCurrentTab={setCurrentTab}
         setIsAuthenticated={setIsAuthenticated}
         setIsLogin={setIsLogin}
       />
-      {currentTab === "activeQuizzes" && <ActiveQuizes />}
+      <section>
+        <Tabs currentTab={currentTab} setCurrentTab={setCurrentTab} />
+        {currentTab && <ActiveQuizzes />}
+        {!currentTab && <AllQuizzes />}
+      </section>
     </main>
   );
 }

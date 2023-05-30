@@ -1,0 +1,9 @@
+.allQuizContainer,
+.activeQuizContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-block-start: 1rem;
+  gap: 1rem;
+}
