@@ -50,6 +50,7 @@
   cursor: pointer;
   text-align: left;
   border-radius: 0.4rem;
+  text-align: center;
 }
 
 @media (min-width: 1024px) {

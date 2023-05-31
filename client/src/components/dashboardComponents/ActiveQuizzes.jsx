@@ -30,7 +30,7 @@ const ActiveQuizzes = ({ setQuizDetails }) => {
           <QuizDetailCard
             key={quiz._id}
             quizDetails={quiz}
-            quizType="expired"
+            quizType="active"
             setQuizDetails={setQuizDetails}
           />
         ))}

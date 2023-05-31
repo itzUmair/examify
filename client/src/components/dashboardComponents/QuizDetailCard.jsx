@@ -21,17 +21,17 @@ const QuizDetailCard = ({
           className="quizAction"
           onClick={() => setQuizDetails(quizDetails._id)}
         >
-          Quiz Details
+          Details
         </button>
         {quizType === "expired" ? (
           <button
             className="quizAction"
             onClick={() => setShowQuizResults(quizDetails._id)}
           >
-            Quiz Results
+            Results
           </button>
         ) : (
-          <button className="quizAction">Quiz Insights</button>
+          <button className="quizAction">Insights</button>
         )}
       </div>
     </div>

@@ -49,6 +49,7 @@ body {
   outline: none;
   cursor: pointer;
   font-weight: bold;
+  text-transform: capitalize;
 }
 
 .deleteBtn {
