@@ -70,6 +70,7 @@ const signin = asyncHandler(async (req, res) => {
     }
   );
   const data = {
+    id,
     emailAddress,
     name,
   };
