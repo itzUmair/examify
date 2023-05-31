@@ -67,21 +67,25 @@ const QuizResults = ({ quizID, setShowQuizResults }) => {
           </div>
           <div className="quizResults">
             <table className="resultsTable">
-              <tr className="tableHeader">
-                <th>Student Name</th>
-                <th>Student Score</th>
-                <th>Attempted On</th>
-              </tr>
-              {quizResults?.map((result) => {
-                const attempt = new Date(result.attemptOn).toLocaleString();
-                return (
-                  <tr key={result._id} className="tableRecord">
-                    <td>{result.studentName}</td>
-                    <td>{result.studentScore}</td>
-                    <td>{attempt}</td>
-                  </tr>
-                );
-              })}
+              <thead>
+                <tr className="tableHeader">
+                  <th>Student Name</th>
+                  <th>Student Score</th>
+                  <th>Attempted On</th>
+                </tr>
+              </thead>
+              <tbody>
+                {quizResults?.map((result) => {
+                  const attempt = new Date(result.attemptOn).toLocaleString();
+                  return (
+                    <tr key={result._id} className="tableRecord">
+                      <td>{result.studentName}</td>
+                      <td>{result.studentScore}</td>
+                      <td>{attempt}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
             </table>
           </div>
         </div>

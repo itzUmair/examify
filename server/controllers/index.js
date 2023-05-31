@@ -182,7 +182,9 @@ const getQuizDetails = asyncHandler(async (req, res) => {
 
 const getAllQuizResults = asyncHandler(async (req, res) => {
   const id = req.params.quizID;
-  const quizzes = await QuizResultsSchema.find({ quiz_id: id });
+  const quizzes = await QuizResultsSchema.find({ quiz_id: id }).sort({
+    studentScore: -1,
+  });
   res.status(200).json({ data: quizzes });
 });
 
