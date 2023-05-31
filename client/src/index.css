@@ -74,7 +74,23 @@ body {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .closeBtn,
+  .editBtn,
+  .deleteBtn,
+  .downloadXLSX {
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border-radius: 0.5rem;
+  }
 }
 
 @media (max-width: 767px) {
+  .closeBtn,
+  .editBtn,
+  .deleteBtn,
+  .downloadXLSX {
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border-radius: 0.5rem;
+  }
 }

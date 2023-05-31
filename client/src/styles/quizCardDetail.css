@@ -84,7 +84,61 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .quizCardContainer {
+    width: 30rem;
+    height: 5rem;
+  }
+  .quizCardContainer > .quizID {
+    width: 7rem;
+  }
+  .quizCardContainer > .quizDetailContainer > .quizSubject,
+  .quizCardContainer > .quizDetailContainer > .quizGrade,
+  .quizCardContainer > .quizDetailContainer > .quizDate {
+    font-size: 0.8rem;
+  }
+  .quizCardContainer > .quizDetailContainer > .quizTitle {
+    font-size: 1.2rem;
+  }
+
+  .quizCardContainer > .quizActionContainer > .quizAction {
+    padding-inline: 0.5rem;
+    padding-block: 0.25rem;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  .quizCardContainer > .quizActionContainer > .quizAction:hover,
+  .quizCardContainer > .quizActionContainer > .quizAction:focus {
+    background-color: var(--clr-100);
+    color: var(--clr-300);
+  }
 }
 
 @media (max-width: 767px) {
+  .quizCardContainer {
+    width: 100%;
+    height: 5rem;
+  }
+  .quizCardContainer > .quizID {
+    width: 7rem;
+  }
+  .quizCardContainer > .quizDetailContainer > .quizSubject,
+  .quizCardContainer > .quizDetailContainer > .quizGrade,
+  .quizCardContainer > .quizDetailContainer > .quizDate {
+    font-size: 0.8rem;
+  }
+  .quizCardContainer > .quizDetailContainer > .quizTitle {
+    font-size: 1.2rem;
+  }
+
+  .quizCardContainer > .quizActionContainer > .quizAction {
+    padding-inline: 0.5rem;
+    padding-block: 0.25rem;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+
+  .quizCardContainer > .quizActionContainer > .quizAction:hover,
+  .quizCardContainer > .quizActionContainer > .quizAction:focus {
+    background-color: var(--clr-100);
+    color: var(--clr-300);
+  }
 }

@@ -95,7 +95,7 @@
     padding-block: 0.8rem;
   }
   .navbar > .logo {
-    width: 8rem;
+    width: 6rem;
   }
   .navbar > .profileMenuContainer {
     top: 4rem;
@@ -104,4 +104,15 @@
 }
 
 @media (max-width: 767px) {
+  .navbar {
+    padding-inline: 2rem;
+    padding-block: 0.8rem;
+  }
+  .navbar > .logo {
+    width: 4rem;
+  }
+  .navbar > .profileMenuContainer {
+    top: 4rem;
+    right: 2rem;
+  }
 }

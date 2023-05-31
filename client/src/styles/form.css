@@ -124,11 +124,9 @@ form > p > button:hover {
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-}
-
-@media (max-width: 767px) {
   .form > img {
     margin-block: 5rem;
+    width: 10rem;
   }
   .form > input {
     width: 22.5rem;
@@ -139,6 +137,28 @@ form > p > button:hover {
   }
   .button {
     width: 22.5rem;
+    height: 3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .form {
+    width: 100%;
+    padding-inline: 1rem;
+  }
+  .form > img {
+    margin-block: 5rem;
+    width: 10rem;
+  }
+  .form > input {
+    width: 100%;
+    height: 3rem;
+  }
+  .form > input::placeholder {
+    font-size: 1rem;
+  }
+  .button {
+    width: 100%;
     height: 3rem;
   }
 }
