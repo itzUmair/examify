@@ -4,7 +4,7 @@ import axios from "../../api/axios";
 import Loader from "../../assets/loader.svg";
 import "../../styles/quizzes.css";
 
-const AllQuizzes = ({ setQuizDetails }) => {
+const AllQuizzes = ({ setQuizDetails, setShowQuizResults }) => {
   const [allQuizzes, setAllQuizzes] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,6 +30,7 @@ const AllQuizzes = ({ setQuizDetails }) => {
             quizDetails={quiz}
             quizType="expired"
             setQuizDetails={setQuizDetails}
+            setShowQuizResults={setShowQuizResults}
           />
         ))}
     </section>

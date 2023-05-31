@@ -1,0 +1,54 @@
+.quizResultsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 1rem;
+}
+
+.quizResultsContainer .resultsTable {
+  margin-top: 1rem;
+}
+
+.quizResultsContainer .resultsTable,
+th,
+tr,
+td {
+  border: 2px solid black;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.quizResultsContainer .resultsTable > .tableHeader > th {
+  background-color: var(--clr-300);
+  color: var(--clr-100);
+  font-weight: bold;
+  text-transform: capitalize;
+  padding-inline: 3rem;
+  padding-block: 0.5rem;
+}
+
+.quizResultsContainer .resultsTable > tr > td {
+  text-transform: capitalize;
+  padding-block: 0.5rem;
+}
+
+.quizResultsContainer .resultsTable > tr:nth-child(odd) {
+  background-color: var(--clr-920);
+}
+
+.downloadXLSX {
+  background-color: green;
+  color: var(--clr-100);
+  font-weight: bold;
+  border-radius: 0.25rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.noResults {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
