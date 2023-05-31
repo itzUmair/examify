@@ -1,6 +1,6 @@
 import "../../styles/quizCardDetail.css";
 
-const QuizDetailCard = ({ quizDetails, quizType }) => {
+const QuizDetailCard = ({ quizDetails, quizType, setQuizDetails }) => {
   const date = new Date(quizDetails.expiresOn).toLocaleDateString();
   return (
     <div className="quizCardContainer">
@@ -12,7 +12,12 @@ const QuizDetailCard = ({ quizDetails, quizType }) => {
         <p className="quizDate">{date}</p>
       </div>
       <div className="quizActionContainer">
-        <button className="quizAction">Quiz Details</button>
+        <button
+          className="quizAction"
+          onClick={() => setQuizDetails(quizDetails._id)}
+        >
+          Quiz Details
+        </button>
         {quizType === "expired" ? (
           <button className="quizAction">Quiz Results</button>
         ) : (

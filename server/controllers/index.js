@@ -170,6 +170,15 @@ const getAllActiveQuizzes = asyncHandler(async (req, res) => {
   res.status(200).json(activeQuizzes);
 });
 
+const getQuizDetails = asyncHandler(async (req, res) => {
+  const id = req.params.quizID;
+  const quiz = await QuizzesSchema.findOne({ _id: id });
+  if (quiz.length === 0) {
+    CustomErrors(404, "no quiz with this id was found.");
+  }
+  res.status(200).json(quiz);
+});
+
 const getAllQuizResults = asyncHandler(async (req, res) => {
   const id = req.params.quizID;
   const quizzes = await QuizResultsSchema.find({ quiz_id: id });
@@ -222,4 +231,5 @@ export {
   getAllQuizResults,
   getQuiz,
   submitQuiz,
+  getQuizDetails,
 };

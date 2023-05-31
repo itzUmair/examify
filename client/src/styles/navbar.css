@@ -90,6 +90,17 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .navbar {
+    padding-inline: 2rem;
+    padding-block: 0.8rem;
+  }
+  .navbar > .logo {
+    width: 8rem;
+  }
+  .navbar > .profileMenuContainer {
+    top: 4rem;
+    right: 2rem;
+  }
 }
 
 @media (max-width: 767px) {

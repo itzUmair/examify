@@ -11,6 +11,7 @@ import {
   getAllQuizResults,
   getQuiz,
   submitQuiz,
+  getQuizDetails,
 } from "../controllers/index.js";
 
 const router = express.Router();
@@ -24,6 +25,7 @@ router.route("/createQuiz").post(createQuiz);
 router.route("/getAllQuizzes/:teacherID").get(getAllQuizzes);
 router.route("/getAllActiveQuizzes/:teacherID").get(getAllActiveQuizzes);
 router.route("/getAllQuizResults/:quizID").get(getAllQuizResults);
+router.route("/getQuizDetails/:quizID").get(getQuizDetails);
 router.route("/getQuiz/:quizID").get(getQuiz);
 router.route("/submitQuiz").post(submitQuiz);
 

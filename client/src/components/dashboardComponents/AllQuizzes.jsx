@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { QuizDetailCard } from "./index";
 import axios from "../../api/axios";
+import Loader from "../../assets/loader.svg";
 import "../../styles/quizzes.css";
 
-const AllQuizzes = () => {
+const AllQuizzes = ({ setQuizDetails }) => {
   const [allQuizzes, setAllQuizzes] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,7 +21,7 @@ const AllQuizzes = () => {
   }, []);
   return (
     <section className="allQuizContainer">
-      {isLoading && <p>Loading Data</p>}
+      {isLoading && <img src={Loader} alt="loading data" className="loading" />}
       {!isLoading &&
         allQuizzes?.length &&
         allQuizzes.map((quiz) => (
@@ -28,6 +29,7 @@ const AllQuizzes = () => {
             key={quiz._id}
             quizDetails={quiz}
             quizType="expired"
+            setQuizDetails={setQuizDetails}
           />
         ))}
     </section>

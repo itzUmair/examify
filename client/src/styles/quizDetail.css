@@ -1,0 +1,87 @@
+.quizDetailsContainer {
+  display: flex;
+  padding-block: 1rem;
+}
+
+.quizDetailsContainer > .actionBtnContainer > .closeBtn {
+  background-color: var(--clr-300);
+  color: var(--clr-100);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.quizDetailsContainer > .actionBtnContainer {
+  display: flex;
+  gap: 1rem;
+  margin-block: 1rem;
+}
+
+.quizDetailsContainer > .actionBtnContainer > .deleteBtn {
+  background-color: red;
+  color: var(--clr-100);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.quizDetailsContainer > .actionBtnContainer > .editBtn {
+  background-color: var(--clr-300);
+  color: var(--clr-100);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.quizDetailsContainer > .quizDetails > h2 {
+  font-weight: bold;
+  border-bottom: 1px solid var(--clr-910);
+}
+
+.quizDetailsContainer > .quizDetails > span {
+  display: flex;
+}
+
+.quizDetailsContainer > .quizDetails > span > p {
+  text-transform: capitalize;
+}
+
+.quizDetailsContainer > .quizDetails > span > p:first-child {
+  font-weight: bold;
+  width: 25%;
+}
+
+.quizDetailsContainer
+  > .quizDetails
+  > .quizQuestionsContainer
+  > .questionContainer
+  > .questionText {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .quizDetailsContainer > .quizDetails {
+    width: 30rem;
+  }
+  .quizDetailsContainer > .quizDetails > h2 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+  .quizDetailsContainer > .actionBtnContainer > .closeBtn,
+  .quizDetailsContainer > .actionBtnContainer > .editBtn,
+  .quizDetailsContainer > .actionBtnContainer > .deleteBtn {
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    border-radius: 0.5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+}
+
+@media (max-width: 767px) {
+}
