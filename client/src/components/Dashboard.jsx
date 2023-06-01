@@ -5,6 +5,7 @@ import {
   Tabs,
   QuizDetail,
   QuizResults,
+  CreateQuiz,
 } from "./dashboardComponents";
 import { useState } from "react";
 import "../styles/dashboard.css";
@@ -13,6 +14,7 @@ function Dashboard({ setIsAuthenticated, setIsLogin }) {
   const [currentTab, setCurrentTab] = useState(true);
   const [quizDetails, setQuizDetails] = useState(false);
   const [showQuizResults, setShowQuizResults] = useState(false);
+  const [createQuiz, setCreateQuiz] = useState(false);
   return (
     <main className="dashboardMain">
       <NavBar
@@ -20,8 +22,11 @@ function Dashboard({ setIsAuthenticated, setIsLogin }) {
         setIsAuthenticated={setIsAuthenticated}
         setIsLogin={setIsLogin}
       />
-      {!showQuizResults && !quizDetails && (
+      {!createQuiz && !showQuizResults && !quizDetails && (
         <section>
+          <button className="createQuiz" onClick={() => setCreateQuiz(true)}>
+            Create Quiz
+          </button>
           <Tabs currentTab={currentTab} setCurrentTab={setCurrentTab} />
           {currentTab && (
             <ActiveQuizzes
@@ -38,11 +43,13 @@ function Dashboard({ setIsAuthenticated, setIsLogin }) {
         </section>
       )}
 
-      {quizDetails && (
+      {createQuiz && <CreateQuiz />}
+
+      {!createQuiz && quizDetails && (
         <QuizDetail quizDetails={quizDetails} setQuizDetails={setQuizDetails} />
       )}
 
-      {showQuizResults && (
+      {!createQuiz && showQuizResults && (
         <QuizResults
           quizID={showQuizResults}
           setShowQuizResults={setShowQuizResults}

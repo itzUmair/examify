@@ -1,0 +1,4 @@
+.createQuizForm {
+  display: flex;
+  flex-direction: column;
+}
