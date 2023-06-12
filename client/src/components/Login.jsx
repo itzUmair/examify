@@ -60,7 +60,7 @@ function Login({ setIsSignup, setIsLogin, setIsAuthenticated }) {
         setIsLogin(false);
         setIsAuthenticated(true);
       } catch (error) {
-        setError(error.response.data.error);
+        setError(error?.response?.data?.error || error.message);
         setIsLoading(false);
       }
     }
@@ -89,7 +89,7 @@ function Login({ setIsSignup, setIsLogin, setIsAuthenticated }) {
         />
         <div
           className="show-password-btn"
-          onClick={(e) => {
+          onClick={() => {
             setShowPassword((prevState) => !prevState);
           }}
         >
