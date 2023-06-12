@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "../../styles/createQuiz.css";
 import axios from "../../api/axios";
 
@@ -6,9 +6,8 @@ const CreateQuiz = () => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const userData = JSON.parse(localStorage.getItem("userData"));
-  console.log(userData?.id);
   const [quizMetaDeta, setQuizMetaDeta] = useState({
-    createdBy: userData?.id,
+    createdBy: userData?.id || "",
     scheduledFor: "",
     expiresOn: "",
     timeLimit: "",
@@ -46,6 +45,8 @@ const CreateQuiz = () => {
   ]);
 
   const handleChange = (e, questionIndex, key, optionIndex) => {
+    setSuccess("");
+    setError("");
     const updatedQuestions = [...quizQuestions];
     if (key === "options") {
       updatedQuestions[questionIndex][key][optionIndex] = e.target.value;
@@ -56,12 +57,16 @@ const CreateQuiz = () => {
   };
 
   const handleMetaDataChange = (e) => {
+    setSuccess("");
+    setError("");
     const { name, value } = e.target;
     setQuizMetaDeta((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleCreateQuiz = async (e) => {
     e.preventDefault();
+    const data = Object.values(quizMetaDeta);
+    if (data.includes("")) return;
     const quiz = { ...quizMetaDeta, questions: quizQuestions };
     try {
       const response = await axios.post("createQuiz", {
@@ -159,8 +164,10 @@ const CreateQuiz = () => {
                   onChange={(e) => handleChange(e, QuesIndex, "question")}
                 />
                 {question.options.map((option, index) => (
-                  <>
-                    <label htmlFor="option">Option {index}:</label>
+                  <React.Fragment key={index}>
+                    <label htmlFor="option" key={`${QuesIndex}${index}`}>
+                      Option {index}:
+                    </label>
                     <input
                       type="text"
                       key={index}
@@ -172,7 +179,7 @@ const CreateQuiz = () => {
                         handleChange(e, QuesIndex, "options", index)
                       }
                     />
-                  </>
+                  </React.Fragment>
                 ))}
                 <label htmlFor="correctOption">Correct Option</label>
                 <input
