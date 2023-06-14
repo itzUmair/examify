@@ -12,6 +12,7 @@ import {
   getQuiz,
   submitQuiz,
   getQuizDetails,
+  deleteQuiz,
 } from "../controllers/index.js";
 
 const router = express.Router();
@@ -28,5 +29,6 @@ router.route("/getAllQuizResults/:quizID").get(getAllQuizResults);
 router.route("/getQuizDetails/:quizID").get(getQuizDetails);
 router.route("/getQuiz/:quizID").get(getQuiz);
 router.route("/submitQuiz").post(submitQuiz);
+router.route("/deleteQuiz/:quizID").delete(deleteQuiz);
 
 export default router;

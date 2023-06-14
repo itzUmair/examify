@@ -188,6 +188,12 @@ const getAllQuizResults = asyncHandler(async (req, res) => {
   res.status(200).json({ data: quizzes });
 });
 
+const deleteQuiz = asyncHandler(async (req, res) => {
+  const id = req.params.quizID;
+  const quiz = await QuizzesSchema.deleteOne({ _id: id });
+  res.status(200).json({ message: "deleted successfully" });
+});
+
 // ================================================Student Methods========================
 
 const getQuiz = asyncHandler(async (req, res) => {
@@ -235,4 +241,5 @@ export {
   getQuiz,
   submitQuiz,
   getQuizDetails,
+  deleteQuiz,
 };
