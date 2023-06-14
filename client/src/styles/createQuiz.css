@@ -1,11 +1,32 @@
+.createQuizContainer > h1 {
+  font-weight: bold;
+}
+
 .createQuizForm {
   display: flex;
   flex-direction: column;
 }
 
-.createQuizForm input[type="text"] {
-  word-wrap: break-word;
-  word-break: break-all;
+.createQuizForm ::placeholder {
+  text-transform: capitalize;
+}
+
+.createQuizForm input,
+.createQuizForm textarea {
+  padding-inline: 0.5rem;
+  padding-block: 0.25rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--clr-900);
+  color: var(--clr-950);
+}
+
+.createQuizForm label {
+  text-transform: capitalize;
+}
+
+.createQuizForm > label {
+  margin-block: 0.5rem;
+  font-weight: bold;
 }
 
 .createQuizForm > .questionContainer {
@@ -19,11 +40,46 @@
 .createQuizForm > .questionContainer > .question {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+}
+
+.createQuizForm textarea {
+  resize: vertical;
+  height: auto;
+}
+
+.createQuizBtn {
+  margin-block: 2rem;
+}
+
+.createQuizForm > h2 {
+  margin-block: 1rem;
+  font-weight: bold;
+}
+
+.createQuizForm .questionNumber {
+  font-weight: bold;
+}
+
+.questionContainer {
+  background-color: var(--clr-000);
+  border: 1px solid var(--clr-900);
+  border-radius: 0.5rem;
 }
 
 @media (min-width: 1024px) {
+  .createQuizContainer > h1 {
+    font-size: 2rem;
+  }
+  .createQuizContainer {
+    margin-block: 3rem;
+  }
   .createQuizForm {
     width: 25rem;
+  }
+  .questionContainer {
+    padding-block: 2rem;
+    padding-inline: 3rem;
   }
 }
 

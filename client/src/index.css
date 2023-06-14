@@ -1,4 +1,5 @@
 :root {
+  --clr-000: #ffffff;
   --clr-100: #f2f4ff;
   --clr-300: #27b5de;
   --clr-310: #1f8ead;
@@ -7,6 +8,7 @@
   --clr-900: #1a1d1a;
   --clr-910: #a9a9a9;
   --clr-920: #e4e4e4;
+  --clr-950: #7d7d7d;
 }
 
 *,
@@ -43,7 +45,9 @@ body {
 .deleteBtn,
 .editBtn,
 .downloadXLSX,
-.createQuiz {
+.createQuiz,
+.addQuestionBtn,
+.createQuizBtn {
   background-color: var(--clr-300);
   color: var(--clr-100);
   border: none;
@@ -60,8 +64,15 @@ body {
 .editBtn,
 .closeBtn,
 .downloadXLSX,
-.createQuiz {
+.createQuiz,
+.addQuestionBtn,
+.createQuizBtn {
   background-color: var(--clr-300);
+}
+
+.addQuestionBtn {
+  width: fit-content;
+  align-self: center;
 }
 
 .error {
@@ -85,7 +96,9 @@ body {
   .editBtn,
   .deleteBtn,
   .downloadXLSX,
-  .createQuiz {
+  .createQuiz,
+  .addQuestionBtn,
+  .createQuizBtn {
     padding-inline: 1rem;
     padding-block: 0.5rem;
     border-radius: 0.5rem;
@@ -97,7 +110,9 @@ body {
   .editBtn,
   .deleteBtn,
   .downloadXLSX,
-  .createQuiz {
+  .createQuiz,
+  .addQuestionBtn,
+  .createQuizBtn {
     padding-inline: 1rem;
     padding-block: 0.5rem;
     border-radius: 0.5rem;
@@ -109,7 +124,9 @@ body {
   .editBtn,
   .deleteBtn,
   .downloadXLSX,
-  .createQuiz {
+  .createQuiz,
+  .addQuestionBtn,
+  .createQuizBtn {
     padding-inline: 1rem;
     padding-block: 0.5rem;
     border-radius: 0.5rem;

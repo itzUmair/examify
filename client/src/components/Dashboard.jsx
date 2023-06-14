@@ -43,7 +43,7 @@ function Dashboard({ setIsAuthenticated, setIsLogin }) {
         </section>
       )}
 
-      {createQuiz && <CreateQuiz />}
+      {createQuiz && <CreateQuiz setCreateQuiz={setCreateQuiz} />}
 
       {!createQuiz && quizDetails && (
         <QuizDetail quizDetails={quizDetails} setQuizDetails={setQuizDetails} />

@@ -29,6 +29,9 @@
   font-weight: bold;
   margin-top: 0.5rem;
 }
+.quizQuestionsContainer > .questionContainer {
+  margin-block-end: 1rem;
+}
 
 @media (min-width: 1024px) {
   .quizDetailsContainer > .quizDetails {

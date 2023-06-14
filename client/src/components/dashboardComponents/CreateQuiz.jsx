@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../../styles/createQuiz.css";
 import axios from "../../api/axios";
 
-const CreateQuiz = () => {
+const CreateQuiz = ({ setCreateQuiz }) => {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const userData = JSON.parse(localStorage.getItem("userData"));
@@ -18,29 +18,29 @@ const CreateQuiz = () => {
   });
   const [quizQuestions, setQuizQuestions] = useState([
     {
-      question: "question 1",
-      options: ["option 1", "option 2", "option 3", "option 4"],
-      correctAnswer: "option 1",
+      question: "",
+      options: ["", "", "", ""],
+      correctAnswer: "",
     },
     {
-      question: "question 1",
-      options: ["option 1", "option 2", "option 3", "option 4"],
-      correctAnswer: "option 1",
+      question: "",
+      options: ["", "", "", ""],
+      correctAnswer: "",
     },
     {
-      question: "question 1",
-      options: ["option 1", "option 2", "option 3", "option 4"],
-      correctAnswer: "option 1",
+      question: "",
+      options: ["", "", "", ""],
+      correctAnswer: "",
     },
     {
-      question: "question 1",
-      options: ["option 1", "option 2", "option 3", "option 4"],
-      correctAnswer: "option 1",
+      question: "",
+      options: ["", "", "", ""],
+      correctAnswer: "",
     },
     {
-      question: "question 1",
-      options: ["option 1", "option 2", "option 3", "option 4"],
-      correctAnswer: "option 1",
+      question: "",
+      options: ["", "", "", ""],
+      correctAnswer: "",
     },
   ]);
 
@@ -88,6 +88,10 @@ const CreateQuiz = () => {
 
   return (
     <section className="createQuizContainer">
+      <button className="closeBtn" onClick={() => setCreateQuiz(false)}>
+        back
+      </button>
+      <h1>New Quiz</h1>
       <form className="createQuizForm">
         {success && <p className="success">{success}</p>}
         {error && <p className="error">{error}</p>}
@@ -118,8 +122,7 @@ const CreateQuiz = () => {
           onChange={handleMetaDataChange}
         />
         <label htmlFor="description">Description:</label>
-        <input
-          type="text"
+        <textarea
           name="description"
           id="description"
           maxLength="200"
@@ -156,38 +159,42 @@ const CreateQuiz = () => {
           return (
             <div className="questionContainer" key={QuesIndex}>
               <div className="question" key={QuesIndex}>
-                <input
-                  type="text"
+                <p className="questionNumber">Question No. {QuesIndex + 1}</p>
+                <textarea
                   className="questionText"
                   value={question.question}
                   name={"question" + QuesIndex}
+                  placeholder="enter question"
+                  maxLength="200"
                   onChange={(e) => handleChange(e, QuesIndex, "question")}
                 />
                 {question.options.map((option, index) => (
                   <React.Fragment key={index}>
                     <label htmlFor="option" key={`${QuesIndex}${index}`}>
-                      Option {index}:
+                      Option {index + 1}:
                     </label>
-                    <input
-                      type="text"
+                    <textarea
                       key={index}
                       className="questionOption"
+                      placeholder="enter option"
                       value={option}
                       name={`option${index}`}
                       id={`option${index}`}
+                      maxLength="200"
                       onChange={(e) =>
                         handleChange(e, QuesIndex, "options", index)
                       }
                     />
                   </React.Fragment>
                 ))}
-                <label htmlFor="correctOption">Correct Option</label>
-                <input
-                  type="text"
+                <label htmlFor="correctOption">Correct Option: </label>
+                <textarea
                   className="correctOption"
                   value={question.correctAnswer}
+                  placeholder="enter correct option"
                   name={`correctOption${QuesIndex}`}
                   id={`correctOption${QuesIndex}`}
+                  maxLength="200"
                   onChange={(e) => handleChange(e, QuesIndex, "correctAnswer")}
                 />
               </div>
@@ -195,21 +202,22 @@ const CreateQuiz = () => {
           );
         })}
         <button
+          className="addQuestionBtn"
           onClick={(e) => {
             e.preventDefault();
             setQuizQuestions((prevQuestions) => [
               ...prevQuestions,
               {
-                question: "question 1",
-                options: ["option 1", "option 2", "option 3", "option 4"],
-                correctAnswer: "option 1",
+                question: "",
+                options: ["", "", "", ""],
+                correctAnswer: "",
               },
             ]);
           }}
         >
-          ADD
+          add question
         </button>
-        <button className="createQuizButton" onClick={handleCreateQuiz}>
+        <button className="createQuizBtn" onClick={handleCreateQuiz}>
           Create Quiz
         </button>
       </form>
