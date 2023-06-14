@@ -6,6 +6,7 @@ import "../../styles/quizDetail.css";
 const QuizDetail = ({ quizDetails, setQuizDetails }) => {
   const [quizDetail, setQuizDetail] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [quizDeleted, setQuizDeleted] = useState(false);
 
   const fetchQuizDetails = async () => {
     setIsLoading(true);
@@ -22,8 +23,22 @@ const QuizDetail = ({ quizDetails, setQuizDetails }) => {
   const scheduledFor = new Date(quizDetail?.scheduledFor).toLocaleDateString();
   const expiresOn = new Date(quizDetail?.expiresOn).toLocaleDateString();
 
+  const deleteQuiz = async () => {
+    const response = await axios.delete(`/deleteQuiz/${quizDetails}`);
+    setQuizDeleted(true);
+    console.log(response);
+  };
+
   return (
     <>
+      {quizDeleted && (
+        <div className="quizDeletedDialog">
+          <p>Quiz Deleted Successfully!</p>
+          <button className="closeBtn" onClick={() => setQuizDetails(false)}>
+            Close
+          </button>
+        </div>
+      )}
       {isLoading && <img src={Loader} alt="loading data" className="loading" />}
       {!isLoading && (
         <section className="quizDetailsContainer">
@@ -32,8 +47,10 @@ const QuizDetail = ({ quizDetails, setQuizDetails }) => {
               {" "}
               close
             </button>
-            <button className="editBtn">Edit Quiz</button>
-            <button className="deleteBtn">Delete Quiz</button>
+            {/* <button className="editBtn">Edit Quiz</button> */}
+            <button className="deleteBtn" onClick={() => deleteQuiz()}>
+              Delete Quiz
+            </button>
           </div>
           <div className="quizDetails">
             <h2>Details</h2>

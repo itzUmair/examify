@@ -33,6 +33,25 @@
   margin-block-end: 1rem;
 }
 
+.quizDeletedDialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  background-color: var(--clr-000);
+  padding: 1rem;
+  border-radius: 0.5rem;
+
+  box-shadow: 0 0 2rem 0.5rem var(--clr-910);
+}
+
 @media (min-width: 1024px) {
   .quizDetailsContainer > .quizDetails {
     width: 30rem;
