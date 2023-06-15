@@ -21,16 +21,15 @@ const QuizDetail = ({ quizDetails, setQuizDetails }) => {
     fetchQuizDetails();
   }, []);
 
-  const createdOn = new Date(quizDetail?.createdOn).toLocaleDateString();
-  const scheduledFor = new Date(quizDetail?.scheduledFor).toLocaleDateString();
-  const expiresOn = new Date(quizDetail?.expiresOn).toLocaleDateString();
+  const createdOn = new Date(quizDetail?.createdOn).toLocaleString();
+  const scheduledFor = new Date(quizDetail?.scheduledFor).toLocaleString();
+  const expiresOn = new Date(quizDetail?.expiresOn).toLocaleString();
 
   const deleteQuiz = async () => {
     await axios.delete(`/deleteQuiz/${quizDetails}`);
     setQuizDeleted(true);
     setDeleteQuizDialog(false);
   };
-
   return (
     <>
       {deleteQuizDialog && (

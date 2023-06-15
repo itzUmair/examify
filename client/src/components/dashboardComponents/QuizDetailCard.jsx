@@ -6,7 +6,7 @@ const QuizDetailCard = ({
   setQuizDetails,
   setShowQuizResults,
 }) => {
-  const date = new Date(quizDetails.expiresOn).toLocaleDateString();
+  const date = new Date(quizDetails.expiresOn).toLocaleString();
   return (
     <div className="quizCardContainer">
       <div className="quizID">{quizDetails._id}</div>

@@ -131,7 +131,7 @@
 @media (max-width: 767px) {
   .quizCardContainer {
     width: 100%;
-    height: 5rem;
+    height: 6rem;
   }
   .quizCardContainer > .quizID {
     width: 7rem;
