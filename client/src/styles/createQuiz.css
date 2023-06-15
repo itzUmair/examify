@@ -16,8 +16,16 @@
   padding-inline: 0.5rem;
   padding-block: 0.25rem;
   border-radius: 0.25rem;
-  border: 1px solid var(--clr-900);
+  outline: 1px solid var(--clr-900);
   color: var(--clr-950);
+  border: none;
+}
+
+.createQuizForm input:hover,
+.createQuizForm input:focus,
+.createQuizForm textarea:hover,
+.createQuizForm textarea:focus {
+  outline: 2.5px solid var(--clr-300);
 }
 
 .createQuizForm label {
@@ -84,7 +92,34 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .createQuizContainer > h1 {
+    font-size: 2rem;
+  }
+  .createQuizContainer {
+    margin-block: 3rem;
+  }
+  .createQuizForm {
+    width: 25rem;
+  }
+  .questionContainer {
+    padding-block: 2rem;
+    padding-inline: 3rem;
+  }
 }
 
 @media (max-width: 767px) {
+  .createQuizContainer > h1 {
+    font-size: 1.5rem;
+  }
+  .createQuizContainer {
+    margin-block: 3rem;
+  }
+  .createQuizForm {
+    padding-inline: 0.5rem;
+  }
+  .questionContainer {
+    width: 90vw;
+    padding-block: 1rem;
+    padding-inline: 1rem;
+  }
 }

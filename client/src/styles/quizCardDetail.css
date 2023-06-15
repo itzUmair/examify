@@ -28,6 +28,7 @@
 .quizCardContainer > .quizDetailContainer > .quizTitle {
   font-weight: bold;
   text-transform: capitalize;
+  text-overflow: ellipsis;
 }
 .quizCardContainer > .quizDetailContainer .quizSubject .quizGrade {
   text-transform: capitalize;
@@ -81,6 +82,13 @@
     background-color: var(--clr-100);
     color: var(--clr-300);
   }
+  .quizCardContainer > .quizDetailContainer > .quizTitle,
+  .quizCardContainer > .quizDetailContainer > .quizSubject {
+    max-width: 20ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -111,6 +119,13 @@
     background-color: var(--clr-100);
     color: var(--clr-300);
   }
+  .quizCardContainer > .quizDetailContainer > .quizTitle,
+  .quizCardContainer > .quizDetailContainer > .quizSubject {
+    max-width: 15ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 @media (max-width: 767px) {
@@ -126,6 +141,14 @@
   .quizCardContainer > .quizDetailContainer > .quizDate {
     font-size: 0.8rem;
   }
+  .quizCardContainer > .quizDetailContainer > .quizTitle,
+  .quizCardContainer > .quizDetailContainer > .quizSubject {
+    max-width: 8ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .quizCardContainer > .quizDetailContainer > .quizTitle {
     font-size: 1.2rem;
   }

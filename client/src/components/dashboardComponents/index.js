@@ -6,3 +6,4 @@ export { default as QuizDetailCard } from "./QuizDetailCard";
 export { default as QuizDetail } from "./QuizDetail";
 export { default as QuizResults } from "./QuizResults";
 export { default as CreateQuiz } from "./CreateQuiz";
+export { default as DeleteQuizDialog } from "./DeleteQuizDialog";

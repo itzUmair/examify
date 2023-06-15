@@ -81,6 +81,7 @@ body {
   width: 100%;
   text-align: center;
   padding: 0.5rem;
+  text-transform: capitalize;
 }
 
 .success {
@@ -89,6 +90,7 @@ body {
   width: 100%;
   text-align: center;
   padding: 0.5rem;
+  text-transform: capitalize;
 }
 
 @media (min-width: 1024px) {

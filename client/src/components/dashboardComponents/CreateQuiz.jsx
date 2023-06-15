@@ -63,26 +63,72 @@ const CreateQuiz = ({ setCreateQuiz }) => {
     setQuizMetaDeta((prevState) => ({ ...prevState, [name]: value }));
   };
 
+  const scrollWindowToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const handleCreateQuiz = async (e) => {
     e.preventDefault();
     const data = Object.values(quizMetaDeta);
-    if (data.includes("")) return;
+    if (data.includes("")) {
+      setError("Please provide values for all the fields.");
+      scrollWindowToTop();
+      return;
+    }
     const quiz = { ...quizMetaDeta, questions: quizQuestions };
+    const sf = new Date(quiz.scheduledFor);
+    const eo = new Date(quiz.expiresOn);
+    const expiryTime = (eo - sf) / (1000 * 60);
+
+    const dateNow = new Date();
+
+    if (quiz.timeLimit < 5 || quiz.timeLimit > 180) {
+      setError("Time limit should be between 5 - 180");
+      scrollWindowToTop();
+      return;
+    }
+
+    if (sf < dateNow) {
+      setError(
+        "The scheduled date and time must be later than the current date and time"
+      );
+      scrollWindowToTop();
+      return;
+    }
+
+    if (expiryTime < quiz.timeLimit || expiryTime < quiz.scheduledFor) {
+      setError(
+        `The expiration date and time must be later than the scheduled date and time, and cover the quiz's time limit of ${quiz.timeLimit} minutes.`
+      );
+      scrollWindowToTop();
+      return;
+    }
+
+    const isEmpty = (value) => value === "";
+
+    const isAnyValueEmpty = quizQuestions.some((question) =>
+      Object.values(question).some((val) =>
+        Array.isArray(val) ? val.some(isEmpty) : isEmpty(val)
+      )
+    );
+
+    if (isAnyValueEmpty) {
+      setError("Please provide values for all the fields.");
+      scrollWindowToTop();
+      return;
+    }
+
     try {
       const response = await axios.post("createQuiz", {
         ...quiz,
       });
       setSuccess(response.data.message);
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      scrollWindowToTop();
     } catch (error) {
       setError(error.response.data.message || error.message);
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
     }
   };
 
@@ -134,7 +180,7 @@ const CreateQuiz = ({ setCreateQuiz }) => {
           type="text"
           name="grade"
           id="grade"
-          maxLength="15"
+          maxLength="10"
           value={quizMetaDeta.grade}
           onChange={handleMetaDataChange}
         />
@@ -143,6 +189,7 @@ const CreateQuiz = ({ setCreateQuiz }) => {
           type="text"
           name="title"
           id="title"
+          maxLength="50"
           value={quizMetaDeta.title}
           onChange={handleMetaDataChange}
         />
@@ -151,6 +198,7 @@ const CreateQuiz = ({ setCreateQuiz }) => {
           type="text"
           name="subject"
           id="subject"
+          maxLength="20"
           value={quizMetaDeta.subject}
           onChange={handleMetaDataChange}
         />

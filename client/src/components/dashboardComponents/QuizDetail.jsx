@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "../../api/axios";
 import Loader from "../../assets/loader.svg";
+import { DeleteQuizDialog } from "../dashboardComponents";
 import "../../styles/quizDetail.css";
 
 const QuizDetail = ({ quizDetails, setQuizDetails }) => {
   const [quizDetail, setQuizDetail] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const [deleteQuizDialog, setDeleteQuizDialog] = useState(false);
   const [quizDeleted, setQuizDeleted] = useState(false);
 
   const fetchQuizDetails = async () => {
@@ -24,13 +26,19 @@ const QuizDetail = ({ quizDetails, setQuizDetails }) => {
   const expiresOn = new Date(quizDetail?.expiresOn).toLocaleDateString();
 
   const deleteQuiz = async () => {
-    const response = await axios.delete(`/deleteQuiz/${quizDetails}`);
+    await axios.delete(`/deleteQuiz/${quizDetails}`);
     setQuizDeleted(true);
-    console.log(response);
+    setDeleteQuizDialog(false);
   };
 
   return (
     <>
+      {deleteQuizDialog && (
+        <DeleteQuizDialog
+          deleteQuiz={deleteQuiz}
+          setDeleteQuizDialog={setDeleteQuizDialog}
+        />
+      )}
       {quizDeleted && (
         <div className="quizDeletedDialog">
           <p>Quiz Deleted Successfully!</p>
@@ -48,7 +56,10 @@ const QuizDetail = ({ quizDetails, setQuizDetails }) => {
               close
             </button>
             {/* <button className="editBtn">Edit Quiz</button> */}
-            <button className="deleteBtn" onClick={() => deleteQuiz()}>
+            <button
+              className="deleteBtn"
+              onClick={() => setDeleteQuizDialog(true)}
+            >
               Delete Quiz
             </button>
           </div>
