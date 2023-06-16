@@ -2,7 +2,6 @@ import "../../styles/quizCardDetail.css";
 
 const QuizDetailCard = ({
   quizDetails,
-  quizType,
   setQuizDetails,
   setShowQuizResults,
 }) => {
@@ -23,16 +22,12 @@ const QuizDetailCard = ({
         >
           Details
         </button>
-        {quizType === "expired" ? (
-          <button
-            className="quizAction"
-            onClick={() => setShowQuizResults(quizDetails._id)}
-          >
-            Results
-          </button>
-        ) : (
-          <button className="quizAction">Insights</button>
-        )}
+        <button
+          className="quizAction"
+          onClick={() => setShowQuizResults(quizDetails._id)}
+        >
+          Results
+        </button>
       </div>
     </div>
   );

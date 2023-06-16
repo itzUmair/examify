@@ -65,6 +65,7 @@ const QuizResults = ({ quizID, setShowQuizResults }) => {
               Download File
             </button>
           </div>
+          <p>Attempts: {quizResults?.length}</p>
           <div className="quizResults">
             <table className="resultsTable">
               <thead>
