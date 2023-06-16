@@ -75,6 +75,10 @@
   border-radius: 0.5rem;
 }
 
+.deleteQuesBtn {
+  margin-block-end: 1rem;
+}
+
 @media (min-width: 1024px) {
   .createQuizContainer > h1 {
     font-size: 2rem;

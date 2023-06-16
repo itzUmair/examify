@@ -132,6 +132,21 @@ const CreateQuiz = ({ setCreateQuiz }) => {
     }
   };
 
+  const handleDeleteQues = (e) => {
+    e.preventDefault();
+    if (quizQuestions.length === 5) {
+      setError("Quiz must contain atleast 5 questions.");
+      scrollWindowToTop();
+      return;
+    }
+    let newQuestionArray = [];
+    for (let i = 0; i < quizQuestions.length; i++) {
+      if (i !== parseInt(e.target.dataset.quesno))
+        newQuestionArray.push(quizQuestions[i]);
+    }
+    setQuizQuestions(newQuestionArray);
+  };
+
   return (
     <section className="createQuizContainer">
       <button className="closeBtn" onClick={() => setCreateQuiz(false)}>
@@ -206,6 +221,13 @@ const CreateQuiz = ({ setCreateQuiz }) => {
         {quizQuestions.map((question, QuesIndex) => {
           return (
             <div className="questionContainer" key={QuesIndex}>
+              <button
+                className="deleteBtn deleteQuesBtn"
+                data-quesno={QuesIndex}
+                onClick={(e) => handleDeleteQues(e)}
+              >
+                Delete Question
+              </button>
               <div className="question" key={QuesIndex}>
                 <p className="questionNumber">Question No. {QuesIndex + 1}</p>
                 <textarea
