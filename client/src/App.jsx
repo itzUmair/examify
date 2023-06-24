@@ -1,4 +1,4 @@
-import { Login, Signup, Dashboard } from "./components";
+import { Login, Signup, Dashboard, LandingPage } from "./components";
 import { useState, useEffect } from "react";
 import verifyToken from "./utils/verifyToken.js";
 
@@ -23,7 +23,8 @@ function App() {
 
   return (
     <>
-      {!isAuthenticated && isLogin && (
+      {onLandingPage && <LandingPage setOnLandingPage={setOnLandingPage} />}
+      {!onLandingPage && !isAuthenticated && isLogin && (
         <div className="login">
           <Login
             setIsSignup={setIsSignup}
@@ -32,10 +33,10 @@ function App() {
           />
         </div>
       )}
-      {!isAuthenticated && isSignup && (
+      {!onLandingPage && !isAuthenticated && isSignup && (
         <Signup setIsLogin={setIsLogin} setIsSignup={setIsSignup} />
       )}
-      {isAuthenticated && (
+      {!onLandingPage && isAuthenticated && (
         <Dashboard
           setIsAuthenticated={setIsAuthenticated}
           setIsLogin={setIsLogin}
