@@ -20,20 +20,28 @@ const AllQuizzes = ({ setQuizDetails, setShowQuizResults }) => {
     fetchAllQuizzes();
   }, []);
   return (
-    <section className="allQuizContainer">
-      {isLoading && <img src={Loader} alt="loading data" className="loading" />}
-      {!isLoading &&
-        allQuizzes?.length &&
-        allQuizzes.map((quiz) => (
-          <QuizDetailCard
-            key={quiz._id}
-            quizDetails={quiz}
-            quizType="expired"
-            setQuizDetails={setQuizDetails}
-            setShowQuizResults={setShowQuizResults}
-          />
-        ))}
-    </section>
+    <>
+      {allQuizzes?.length === 0 ? (
+        <p>No quizzes available</p>
+      ) : (
+        <section className="allQuizContainer">
+          {isLoading && (
+            <img src={Loader} alt="loading data" className="loading" />
+          )}
+          {!isLoading &&
+            allQuizzes?.length &&
+            allQuizzes.map((quiz) => (
+              <QuizDetailCard
+                key={quiz._id}
+                quizDetails={quiz}
+                quizType="expired"
+                setQuizDetails={setQuizDetails}
+                setShowQuizResults={setShowQuizResults}
+              />
+            ))}
+        </section>
+      )}
+    </>
   );
 };
 

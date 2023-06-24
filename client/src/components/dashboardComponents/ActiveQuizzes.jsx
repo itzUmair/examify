@@ -22,19 +22,27 @@ const ActiveQuizzes = ({ setQuizDetails, setShowQuizResults }) => {
     fetchActiveQuizzes();
   }, []);
   return (
-    <section className="activeQuizContainer">
-      {isLoading && <img src={Loader} alt="loading data" className="loading" />}
-      {!isLoading &&
-        activeQuizzes?.length &&
-        activeQuizzes.map((quiz) => (
-          <QuizDetailCard
-            key={quiz._id}
-            quizDetails={quiz}
-            setQuizDetails={setQuizDetails}
-            setShowQuizResults={setShowQuizResults}
-          />
-        ))}
-    </section>
+    <>
+      {activeQuizzes?.length === 0 ? (
+        <p>No quizzes active</p>
+      ) : (
+        <section className="activeQuizContainer">
+          {isLoading && (
+            <img src={Loader} alt="loading data" className="loading" />
+          )}
+          {!isLoading &&
+            activeQuizzes?.length &&
+            activeQuizzes.map((quiz) => (
+              <QuizDetailCard
+                key={quiz._id}
+                quizDetails={quiz}
+                setQuizDetails={setQuizDetails}
+                setShowQuizResults={setShowQuizResults}
+              />
+            ))}
+        </section>
+      )}
+    </>
   );
 };
 
