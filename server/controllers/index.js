@@ -198,10 +198,14 @@ const deleteQuiz = asyncHandler(async (req, res) => {
 
 const getQuiz = asyncHandler(async (req, res) => {
   const id = req.params.quizID;
-  const quiz = await QuizzesSchema.findOne({ quiz_id: id }).select(
+  const quiz = await QuizzesSchema.findOne({ _id: id })?.select(
     "-questions.correctAnswer"
   );
-  if (quiz.length === 0) {
+  const currentDate = new Date();
+  const sf = new Date(quiz.scheduledFor);
+  const eo = new Date(quiz.expiresOn);
+  const expiryTime = (eo - sf) / (1000 * 60);
+  if (!quiz || eo < currentDate || expiryTime < quiz.timeLimit) {
     CustomErrors(404, "no quiz with this id was found.");
   }
   res.status(200).json(quiz);
