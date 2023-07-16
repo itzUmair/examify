@@ -42,6 +42,8 @@ const QuizPage = () => {
         answers: answers,
       });
       setResult(response.data.score);
+      localStorage.removeItem("stdName");
+      localStorage.removeItem("quizData");
     } catch (error) {
       setError(error.response.data.error);
     }
@@ -166,7 +168,14 @@ const QuizPage = () => {
             You scored <span>{result}</span> out of{" "}
             <span>{quizData.questions.length}</span>
           </p>
-          <button className="closeBtn" onClick={() => window.location.reload()}>
+          <button
+            className="closeBtn"
+            onClick={() => {
+              localStorage.removeItem("stdName");
+              localStorage.removeItem("quizData");
+              window.location.reload();
+            }}
+          >
             Continue
           </button>
         </div>
@@ -177,7 +186,14 @@ const QuizPage = () => {
           <img src={rejectIcon} className="resultIcon" />
           <h1>Quiz was discarded!</h1>
           <p>You failed to submit the quiz on time</p>
-          <button className="closeBtn" onClick={() => window.location.reload()}>
+          <button
+            className="closeBtn"
+            onClick={() => {
+              localStorage.removeItem("stdName");
+              localStorage.removeItem("quizData");
+              window.location.reload();
+            }}
+          >
             Continue
           </button>
         </div>
