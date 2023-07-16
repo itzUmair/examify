@@ -4,7 +4,7 @@ import axios from "../api/axios";
 import Logo from "../assets/logo.svg";
 import "../styles/form.css";
 
-function Signup({ setIsLogin, setIsSignup }) {
+function Signup({ setIsLogin, setIsSignup, setOnLandingPage }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -165,6 +165,20 @@ function Signup({ setIsLogin, setIsSignup }) {
             }}
           >
             Log in
+          </button>
+        </p>
+        <p className="seperator">OR</p>
+        <p>
+          I am a student&nbsp;
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setIsSignup(false);
+              setIsLogin(false);
+              setOnLandingPage(true);
+            }}
+          >
+            Home
           </button>
         </p>
       </form>

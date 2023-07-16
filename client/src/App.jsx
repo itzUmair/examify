@@ -23,18 +23,28 @@ function App() {
 
   return (
     <>
-      {onLandingPage && <LandingPage setOnLandingPage={setOnLandingPage} />}
+      {onLandingPage && (
+        <LandingPage
+          setOnLandingPage={setOnLandingPage}
+          setIsLogin={setIsLogin}
+        />
+      )}
       {!onLandingPage && !isAuthenticated && isLogin && (
         <div className="login">
           <Login
             setIsSignup={setIsSignup}
             setIsLogin={setIsLogin}
             setIsAuthenticated={setIsAuthenticated}
+            setOnLandingPage={setOnLandingPage}
           />
         </div>
       )}
       {!onLandingPage && !isAuthenticated && isSignup && (
-        <Signup setIsLogin={setIsLogin} setIsSignup={setIsSignup} />
+        <Signup
+          setIsLogin={setIsLogin}
+          setIsSignup={setIsSignup}
+          setOnLandingPage={setOnLandingPage}
+        />
       )}
       {!onLandingPage && isAuthenticated && (
         <Dashboard

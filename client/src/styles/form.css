@@ -86,6 +86,11 @@ form > p > button:hover {
   margin-top: -1rem;
 }
 
+.form-container > .form > .seperator {
+  font-weight: bold;
+  color: var(--clr-300);
+}
+
 @media (min-width: 1024px) {
   .form {
     width: 22.5rem;

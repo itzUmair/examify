@@ -3,7 +3,12 @@ import Logo from "../assets/logo.svg";
 import axios from "../api/axios.js";
 import "../styles/form.css";
 
-function Login({ setIsSignup, setIsLogin, setIsAuthenticated }) {
+function Login({
+  setIsSignup,
+  setIsLogin,
+  setIsAuthenticated,
+  setOnLandingPage,
+}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -105,7 +110,7 @@ function Login({ setIsSignup, setIsLogin, setIsAuthenticated }) {
           {isLoading ? "Logging in..." : "Log in"}
         </button>
         <p>
-          Don&apos;t have an account?
+          Don&apos;t have an account?&nbsp;
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -114,6 +119,20 @@ function Login({ setIsSignup, setIsLogin, setIsAuthenticated }) {
             }}
           >
             Sign up
+          </button>
+        </p>
+        <p className="seperator">OR</p>
+        <p>
+          I am a student&nbsp;
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setIsSignup(false);
+              setIsLogin(false);
+              setOnLandingPage(true);
+            }}
+          >
+            Home
           </button>
         </p>
       </form>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Logo from "../assets/logo.svg";
 import "../styles/landingpage.css";
 import axios from "../api/axios";
-const LandingPage = ({ setOnLandingPage }) => {
+const LandingPage = ({ setOnLandingPage, setIsLogin }) => {
   const [error, seterror] = useState("");
   const [quizCode, setQuizCode] = useState("");
   const [quiz, setQuiz] = useState(null);
@@ -17,6 +17,8 @@ const LandingPage = ({ setOnLandingPage }) => {
   const handleStartQuiz = (e) => {
     e.preventDefault();
   };
+
+  // TODO: work on the quiz screen
 
   return (
     <>
@@ -37,7 +39,13 @@ const LandingPage = ({ setOnLandingPage }) => {
             </button>
           </form>
           <p className="seperator">OR</p>
-          <button className="button" onClick={() => setOnLandingPage(false)}>
+          <button
+            className="button"
+            onClick={() => {
+              setIsLogin(true);
+              setOnLandingPage(false);
+            }}
+          >
             I am a teacher
           </button>
         </div>
