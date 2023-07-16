@@ -60,7 +60,7 @@
     height: 5rem;
   }
   .quizCardContainer > .quizID {
-    width: 7rem;
+    width: 8.5rem;
   }
   .quizCardContainer > .quizDetailContainer > .quizSubject,
   .quizCardContainer > .quizDetailContainer > .quizGrade,
@@ -97,7 +97,7 @@
     height: 5rem;
   }
   .quizCardContainer > .quizID {
-    width: 7rem;
+    width: 8.5rem;
   }
   .quizCardContainer > .quizDetailContainer > .quizSubject,
   .quizCardContainer > .quizDetailContainer > .quizGrade,
@@ -134,7 +134,7 @@
     height: 6rem;
   }
   .quizCardContainer > .quizID {
-    width: 7rem;
+    width: 8.5rem;
   }
   .quizCardContainer > .quizDetailContainer > .quizSubject,
   .quizCardContainer > .quizDetailContainer > .quizGrade,
