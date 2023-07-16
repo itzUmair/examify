@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Logo from "../assets/logo.svg";
 import resultIcon from "../assets/icons8-certify.svg";
+import rejectIcon from "../assets/icons8-reject.svg";
 import "../styles/quizPage.css";
 import axios from "../api/axios";
 
@@ -11,13 +12,40 @@ const QuizPage = () => {
   const [error, setError] = useState("");
   const [stdName, setStdName] = useState("");
   const [result, setResult] = useState("");
+  const [discardQuiz, setDiscardQuiz] = useState(false);
 
   useEffect(() => {
     setStdName(JSON.parse(localStorage.getItem("stdName")));
     setQuizData(JSON.parse(localStorage.getItem("quizData")));
   }, []);
 
-  const forceCloseQuiz = () => {};
+  const handleSubmitQuiz = async () => {
+    let answers = [];
+    for (let i = 0; i < quizData.questions.length; i++) {
+      if (quizData.questions[i].selectedOption === undefined) {
+        setError("Answer all questions");
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+        return;
+      } else {
+        answers.push(
+          quizData.questions[i].options[quizData.questions[i].selectedOption]
+        );
+      }
+    }
+    try {
+      const response = await axios.post("submitQuiz", {
+        id: quizData._id,
+        name: stdName,
+        answers: answers,
+      });
+      setResult(response.data.score);
+    } catch (error) {
+      setError(error.response.data.error);
+    }
+  };
 
   useEffect(() => {
     setQuestions(quizData.questions);
@@ -30,8 +58,31 @@ const QuizPage = () => {
           let updatedRemainingSeconds = prevRemainingSeconds - 1;
 
           if (updatedRemainingSeconds < 0) {
+            let answers = [];
+            console.log(questions);
+            for (let i = 0; i < quizData.questions.length; i++) {
+              if (quizData.questions[i].selectedOption === undefined) {
+                setDiscardQuiz(true);
+              } else {
+                answers.push(
+                  quizData.questions[i].options[
+                    quizData.questions[i].selectedOption
+                  ]
+                );
+              }
+            }
+            handleSubmitQuiz();
             clearInterval(timer);
-            forceCloseQuiz();
+          }
+
+          if (updatedRemainingSeconds < 60) {
+            setError(
+              "1 minute remaining! The quiz will not be submitted after 1 minute."
+            );
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
           }
 
           return updatedRemainingSeconds;
@@ -46,6 +97,7 @@ const QuizPage = () => {
   const seconds = remainingSeconds % 60;
 
   const handleOptionChange = (questionIndex, optionIndex) => {
+    setError("");
     setQuestions((prevQuestions) => {
       const updatedQuestions = [...prevQuestions];
       updatedQuestions[questionIndex].selectedOption = optionIndex;
@@ -53,36 +105,9 @@ const QuizPage = () => {
     });
   };
 
-  const handleSubmitQuiz = async () => {
-    let answers = [];
-    for (let i = 0; i < questions.length; i++) {
-      if (questions[i].selectedOption === undefined) {
-        setError("Answer all questions");
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-        return;
-      } else {
-        answers.push(questions[i].options[questions[i].selectedOption]);
-      }
-    }
-    console.log(answers);
-    try {
-      const response = await axios.post("submitQuiz", {
-        id: quizData._id,
-        name: stdName,
-        answers: answers,
-      });
-      setResult(response.data.score);
-    } catch (error) {
-      setError(error.response.data.error);
-    }
-  };
-
   return (
     <>
-      {!result && (
+      {!discardQuiz && !result && (
         <div className="quizContainer">
           <div className="header">
             <img src={Logo} alt="examify" className="quizContainerLogo" />
@@ -98,7 +123,6 @@ const QuizPage = () => {
             </p>
           </div>
           {error && <p className="error">{error}</p>}
-          {JSON.stringify(quizData)}
           {questions?.map((question, QuesIndex) => {
             return (
               <div className="questionContainer" key={QuesIndex}>
@@ -135,12 +159,24 @@ const QuizPage = () => {
       )}
       {result && (
         <div className="resultContainer">
-          <img src={resultIcon} />
+          <img src={Logo} alt="examify" className="quizContainerLogo" />
+          <img src={resultIcon} className="resultIcon" />
           <h1>Quiz submitted successfully!</h1>
           <p>
             You scored <span>{result}</span> out of{" "}
             <span>{quizData.questions.length}</span>
           </p>
+          <button className="closeBtn" onClick={() => window.location.reload()}>
+            Continue
+          </button>
+        </div>
+      )}
+      {discardQuiz && !result && (
+        <div className="resultContainer">
+          <img src={Logo} alt="examify" className="quizContainerLogo" />
+          <img src={rejectIcon} className="resultIcon" />
+          <h1>Quiz was discarded!</h1>
+          <p>You failed to submit the quiz on time</p>
           <button className="closeBtn" onClick={() => window.location.reload()}>
             Continue
           </button>

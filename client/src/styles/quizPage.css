@@ -3,6 +3,11 @@
 }
 
 .quizContainer > .header {
+  position: fixed;
+  background-color: var(--clr-100);
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -11,6 +16,10 @@
 
 .quizContainer > .header > .quizTitle {
   text-transform: capitalize;
+  max-width: 25ch;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .quizContainer > .header > .timeDisplay {
@@ -26,6 +35,10 @@
   margin-inline: auto;
   padding: 1rem;
   margin-block: 0.5rem;
+}
+
+.quizContainer:first-child {
+  margin-block-start: 5rem;
 }
 
 .quizContainer > .questionContainer > .question {
@@ -84,13 +97,77 @@
   .resultContainer > h1 {
     font-size: 2rem;
   }
-  .resultContainer > img {
+  .resultContainer > .resultIcon {
     width: 5rem;
   }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .quizContainer > .header {
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    margin-block-end: 1rem;
+  }
+  .quizContainer > .questionContainer {
+    width: 30rem;
+  }
+  .quizContainer > p {
+    width: 30rem;
+    margin-inline: auto;
+  }
+  .resultContainer > h1 {
+    font-size: 2rem;
+  }
+  .resultContainer > .resultIcon {
+    width: 5rem;
+  }
+  .quizContainer > .header > .quizTitle {
+    max-width: 20ch;
+  }
+  .quizContainer > .actionBtn {
+    padding-block-end: 3rem;
+  }
+  .resultContainer > h1 {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  .resultContainer > .quizContainerLogo {
+    width: 10rem;
+    margin-block-end: 5rem;
+  }
 }
 
 @media (max-width: 767px) {
+  .quizContainer > .header {
+    padding-inline: 1rem;
+    padding-block: 1rem;
+    margin-block-end: 1rem;
+  }
+  .quizContainer > .questionContainer {
+    width: 20rem;
+  }
+  .quizContainer > p {
+    width: 25rem;
+    margin-inline: auto;
+  }
+  .resultContainer > h1 {
+    font-size: 2rem;
+  }
+  .resultContainer > .resultIcon {
+    width: 5rem;
+  }
+  .quizContainer > .header > .quizTitle {
+    max-width: 15ch;
+  }
+  .quizContainer > .actionBtn {
+    padding-block-end: 3rem;
+  }
+  .resultContainer > h1 {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+  .resultContainer > .quizContainerLogo {
+    width: 10rem;
+    margin-block-end: 5rem;
+  }
 }

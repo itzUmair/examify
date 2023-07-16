@@ -47,11 +47,9 @@
   gap: 1rem;
   justify-content: center;
   align-items: center;
-  padding-block-start: 5rem;
 }
 
 .quizMetaInfo {
-  width: 30rem;
   display: flex;
   gap: 1rem;
   flex-direction: column;
@@ -74,7 +72,6 @@
 @media (min-width: 1024px) {
   .landingPageLogo {
     width: 12rem;
-    /* margin-bottom: 5rem; */
   }
   .quizStartForm {
     margin-block-start: 5rem;
@@ -89,30 +86,75 @@
   .studentNameInput::placeholder {
     font-size: 1rem;
   }
+  .quizMetaInfoContainer {
+    padding-block-start: 5rem;
+  }
+  .quizMetaInfo {
+    width: 30rem;
+  }
+  .landingPageContainer > .button {
+    width: 22.5rem;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .landingPageLogo {
     width: 12rem;
+    margin-block-end: 5rem;
   }
   .quizStartForm > input {
     width: 22.5rem;
     height: 3rem;
   }
+  .quizStartForm > input,
+  .studentNameInput {
+    height: 3rem;
+  }
   .quizStartForm > input::placeholder {
     font-size: 1rem;
+  }
+  .landingPageContainer > .seperator {
+    margin-block: 3rem;
+  }
+
+  .landingPageContainer > .button {
+    width: 22.5rem;
+  }
+  .quizMetaInfoContainer {
+    padding-block-start: 2rem;
+  }
+  .quizMetaInfo {
+    width: 20rem;
   }
 }
 
 @media (max-width: 767px) {
   .landingPageLogo {
     width: 12rem;
+    margin-block-end: 5rem;
   }
   .quizStartForm > input {
-    width: 100%;
+    width: 20rem;
+    height: 3rem;
+  }
+  .quizStartForm > input,
+  .studentNameInput {
     height: 3rem;
   }
   .quizStartForm > input::placeholder {
     font-size: 1rem;
+  }
+  .landingPageContainer > .seperator {
+    margin-block: 3rem;
+  }
+
+  .landingPageContainer > .button {
+    width: 20rem;
+  }
+  .quizMetaInfoContainer {
+    padding-block-start: 2rem;
+  }
+  .quizMetaInfo {
+    width: 20rem;
   }
 }
