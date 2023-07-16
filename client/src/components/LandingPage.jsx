@@ -14,7 +14,7 @@ const LandingPage = ({ setOnLandingPage, setIsLogin, setOnQuizPage }) => {
       const quiz = await axios.get(`getQuiz/${quizCode}`);
       setQuiz(quiz.data);
     } catch (error) {
-      setError(error.response.data.error);
+      setError(error.response?.data?.error);
     }
   };
 
