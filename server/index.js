@@ -11,7 +11,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://examify-quiz-app.netlify.app/",
+    origin: "*",
     methods: "*",
   })
 );
