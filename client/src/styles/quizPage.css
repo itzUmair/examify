@@ -1,0 +1,96 @@
+.quizContainer > .header > .quizContainerLogo {
+  width: 8rem;
+}
+
+.quizContainer > .header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  box-shadow: 0.5rem 0 0.5rem 0.15rem var(--clr-910);
+}
+
+.quizContainer > .header > .quizTitle {
+  text-transform: capitalize;
+}
+
+.quizContainer > .header > .timeDisplay {
+  font-weight: bold;
+}
+
+.quizContainer > .header > .timeWarning {
+  color: red;
+}
+
+.quizContainer > .questionContainer {
+  display: flex;
+  margin-inline: auto;
+  padding: 1rem;
+  margin-block: 0.5rem;
+}
+
+.quizContainer > .questionContainer > .question {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.quizContainer > .questionContainer > .question > .questionNumber {
+  font-weight: bold;
+}
+
+.quizContainer > .questionContainer > .question > .options {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.quizContainer > .actionBtn {
+  display: flex;
+  justify-content: center;
+  padding-block: 1rem;
+}
+
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  gap: 1rem;
+}
+
+.resultContainer > h1 {
+  font-weight: bold;
+}
+
+.resultContainer > p > span {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+@media (min-width: 1024px) {
+  .quizContainer > .header {
+    padding-inline: 2rem;
+    padding-block: 1rem;
+    margin-block-end: 1rem;
+  }
+  .quizContainer > .questionContainer {
+    width: 25rem;
+  }
+  .quizContainer > p {
+    width: 25rem;
+    margin-inline: auto;
+  }
+  .resultContainer > h1 {
+    font-size: 2rem;
+  }
+  .resultContainer > img {
+    width: 5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+}
+
+@media (max-width: 767px) {
+}

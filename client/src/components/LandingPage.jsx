@@ -2,23 +2,34 @@ import { useState } from "react";
 import Logo from "../assets/logo.svg";
 import "../styles/landingpage.css";
 import axios from "../api/axios";
-const LandingPage = ({ setOnLandingPage, setIsLogin }) => {
-  const [error, seterror] = useState("");
+const LandingPage = ({ setOnLandingPage, setIsLogin, setOnQuizPage }) => {
+  const [error, setError] = useState("");
   const [quizCode, setQuizCode] = useState("");
   const [quiz, setQuiz] = useState(null);
   const [stdName, setStdName] = useState("");
 
   const getQuiz = async (e) => {
     e.preventDefault();
-    const quiz = await axios.get(`getQuiz/${quizCode}`);
-    setQuiz(quiz.data);
+    try {
+      const quiz = await axios.get(`getQuiz/${quizCode}`);
+      setQuiz(quiz.data);
+    } catch (error) {
+      setError(error.response.data.error);
+    }
   };
 
   const handleStartQuiz = (e) => {
     e.preventDefault();
+    if (stdName.length < 3) {
+      setError("Enter a valid name");
+      return;
+    }
+    localStorage.setItem("stdName", JSON.stringify(stdName));
+    localStorage.setItem("quizData", JSON.stringify(quiz));
+    setOnLandingPage(false);
+    setIsLogin(false);
+    setOnQuizPage(true);
   };
-
-  // TODO: work on the quiz screen
 
   return (
     <>
@@ -30,7 +41,10 @@ const LandingPage = ({ setOnLandingPage, setIsLogin }) => {
               type="text"
               name="quizCode"
               placeholder="Enter quiz code"
-              onChange={(e) => setQuizCode(e.target.value)}
+              onChange={(e) => {
+                setError("");
+                setQuizCode(e.target.value);
+              }}
               value={quizCode}
             />
             {error && <p className="error">{error}</p>}
@@ -51,6 +65,7 @@ const LandingPage = ({ setOnLandingPage, setIsLogin }) => {
         </div>
       ) : (
         <div className="quizMetaInfoContainer">
+          <img src={Logo} alt="examify" className="landingPageLogo" />
           <div className="quizMetaInfo">
             <p>
               <span>ID</span>: {quiz._id}
@@ -76,7 +91,8 @@ const LandingPage = ({ setOnLandingPage, setIsLogin }) => {
               <span>Grade</span>: {quiz.grade}
             </p>
             <p>
-              <span>Time</span> limit: {quiz.timeLimit}
+              <span>Time limit: </span>
+              {quiz.timeLimit} minutes
             </p>
           </div>
           <form className="studentNameForm">
@@ -84,9 +100,14 @@ const LandingPage = ({ setOnLandingPage, setIsLogin }) => {
               type="text"
               value={stdName}
               placeholder="Enter your name"
-              onChange={(e) => setStdName(e.target.value)}
+              onChange={(e) => {
+                setError("");
+                setStdName(e.target.value);
+              }}
               className="studentNameInput"
+              maxLength="20"
             />
+            {error && <p className="error">{error}</p>}
             <button className="button" onClick={handleStartQuiz}>
               Start Quiz
             </button>

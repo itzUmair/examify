@@ -47,7 +47,8 @@ body {
 .downloadXLSX,
 .createQuiz,
 .addQuestionBtn,
-.createQuizBtn {
+.createQuizBtn,
+.submitQuizBtn {
   background-color: var(--clr-300);
   color: var(--clr-100);
   border: none;
@@ -81,7 +82,7 @@ body {
   width: 100%;
   text-align: center;
   padding: 0.5rem;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 
 .success {
@@ -100,7 +101,8 @@ body {
   .downloadXLSX,
   .createQuiz,
   .addQuestionBtn,
-  .createQuizBtn {
+  .createQuizBtn,
+  .submitQuizBtn {
     padding-inline: 1rem;
     padding-block: 0.5rem;
     border-radius: 0.5rem;
@@ -114,7 +116,8 @@ body {
   .downloadXLSX,
   .createQuiz,
   .addQuestionBtn,
-  .createQuizBtn {
+  .createQuizBtn,
+  .submitQuizBtn {
     padding-inline: 1rem;
     padding-block: 0.5rem;
     border-radius: 0.5rem;
@@ -128,7 +131,8 @@ body {
   .downloadXLSX,
   .createQuiz,
   .addQuestionBtn,
-  .createQuizBtn {
+  .createQuizBtn,
+  .submitQuizBtn {
     padding-inline: 1rem;
     padding-block: 0.5rem;
     border-radius: 0.5rem;
