@@ -206,7 +206,7 @@ const getQuiz = asyncHandler(async (req, res) => {
   const eo = new Date(quiz.expiresOn);
   const expiryTime = (eo - sf) / (1000 * 60);
   if (!quiz || eo < currentDate || expiryTime < quiz.timeLimit) {
-    CustomErrors(404, "no quiz with this id was found.");
+    CustomErrors(404, "no quiz with this code was found.");
   }
   res.status(200).json(quiz);
 });
