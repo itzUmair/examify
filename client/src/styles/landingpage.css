@@ -108,6 +108,7 @@
   }
   .quizStartForm > input,
   .studentNameInput {
+    width: 22.5rem;
     height: 3rem;
   }
   .quizStartForm > input::placeholder {
@@ -139,6 +140,7 @@
   }
   .quizStartForm > input,
   .studentNameInput {
+    width: 20rem;
     height: 3rem;
   }
   .quizStartForm > input::placeholder {
