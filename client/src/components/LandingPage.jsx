@@ -10,9 +10,25 @@ const LandingPage = ({ setOnLandingPage, setIsLogin, setOnQuizPage }) => {
 
   const getQuiz = async (e) => {
     e.preventDefault();
+    setError("");
     try {
       const quiz = await axios.get(`getQuiz/${quizCode}`);
-      setQuiz(quiz.data);
+      const today = new Date().toISOString();
+      const scheDate = new Date(quiz.data.scheduledFor).toISOString();
+      const expDate = new Date(quiz.data.expiresOn).toISOString();
+      if (today < scheDate) {
+        setError(
+          `Quiz starts on ${new Date(quiz.data.scheduledFor).toLocaleString()}`
+        );
+      } else if (today > expDate) {
+        setError(
+          `Quiz expired on ${new Date(
+            quiz.data.expiresOn
+          ).toLocaleDateString()}`
+        );
+      } else {
+        setQuiz(quiz.data);
+      }
     } catch (error) {
       setError(error.response?.data?.error);
     }
